@@ -138,10 +138,14 @@ public class WeatherStationActivity extends Activity {
     private SensorEventListener mTemperatureListener = new SensorEventListener() {
         @Override
         public void onSensorChanged(SensorEvent event) {
-            mLastTemperature = event.values[0];
-            Log.d(TAG, "sensor changed: " + mLastTemperature);
-            if (mDisplayMode == DisplayMode.TEMPERATURE) {
-                updateDisplay(mLastTemperature);
+            float newTemperature = event.values[0];
+            if (Math.abs(newTemperature - mLastTemperature) > 1) {
+                mLastTemperature = event.values[0];
+                Log.d(TAG, "sensor changed: " + mLastTemperature);
+                if (mDisplayMode == DisplayMode.TEMPERATURE) {
+                    float fahrenheit = 32 + (mLastTemperature * 9 / 5);
+                    updateDisplay(fahrenheit);
+                }
             }
         }
 
