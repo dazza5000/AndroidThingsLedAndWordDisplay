@@ -1,4 +1,4 @@
-# Android Things LED and MESSAGE SCROLLING EXAMPLE
+# Android Things LED and Message Scrolling Example
 
 This sample shows how to implement a scrolling message and led display on the Rainbow Hat using Android Things
 
