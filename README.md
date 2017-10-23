@@ -6,23 +6,7 @@ This sample shows how to implement a scrolling message and led display on the Ra
 
 - Android Things compatible board
 - Android Studio 2.2+
-- [Rainbow Hat for Android Things](https://shop.pimoroni.com/products/rainbow-hat-for-android-things) or the following individual components:
-    - 1 [bmp280 temperature sensor](https://www.adafruit.com/product/2651)
-    - 1 [segment display with I2C backpack](https://www.adafruit.com/product/1270)
-    - 1 push button
-    - 1 resistor
-    - jumper wires
-    - 1 breadboard
-    - (optional) 1 [APA102 compatible RGB Led strip](https://www.adafruit.com/product/2241)
-    - (optional) 1 [Piezo Buzzer](https://www.adafruit.com/products/160)
-    - (optional) [Google Cloud Platform](https://cloud.google.com/) project
-
-## Schematics
-
-If you have the Raspberry Pi [Rainbow Hat for Android Things](https://shop.pimoroni.com/products/rainbow-hat-for-android-things), just plug it onto your Raspberry Pi 3.
-
-![Schematics for Raspberry Pi 3](rpi3_schematics.png)
-![Schematics for Intel Edison](edison_schematics.png)
+- [Rainbow Hat for Android Things](https://shop.pimoroni.com/products/rainbow-hat-for-android-things)
 
 ## Build and install
 
@@ -30,7 +14,6 @@ On Android Studio, click on the "Run" button.
 If you prefer to run on the command line, type
 ```bash
 ./gradlew installDebug
-adb shell am start com.example.androidthings.weatherstation/.WeatherStationActivity
 ```
 
 ## License
