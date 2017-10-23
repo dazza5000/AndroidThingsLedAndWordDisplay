@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.example.androidthings.weatherstation;
+package com.example.androidthings.displaystation;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
