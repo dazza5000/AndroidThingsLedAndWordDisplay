@@ -18,10 +18,6 @@ package com.example.androidthings.displaystation;
 
 import android.os.Build;
 
-import com.google.android.things.pio.PeripheralManagerService;
-
-import java.util.List;
-
 @SuppressWarnings("WeakeHrAccess")
 public final class BoardDefaults {
     private static final String DEVICE_EDISON_ARDUINO = "edison_arduino";
@@ -145,16 +141,6 @@ public final class BoardDefaults {
         sBoardVariant = Build.DEVICE;
         // For the edison check the pin prefix
         // to always return Edison Breakout pin name when applicable.
-        if (sBoardVariant.equals(DEVICE_EDISON)) {
-            PeripheralManagerService pioService = new PeripheralManagerService();
-            List<String> gpioList = pioService.getGpioList();
-            if (gpioList.size() != 0) {
-                String pin = gpioList.get(0);
-                if (pin.startsWith("IO")) {
-                    sBoardVariant = DEVICE_EDISON_ARDUINO;
-                }
-            }
-        }
         return sBoardVariant;
     }
 }
