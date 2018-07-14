@@ -45,7 +45,7 @@ public class DisplayActivity extends Activity {
     private Apa102 mLedstrip;
     private int ledPosition;
     private static final int LEDSTRIP_BRIGHTNESS = 1;
-    private String displayMessage = "Project H";
+    private String displayMessage = "HomeAway Android Traveler";
     private int messageStartingPoint;
 
     Handler mainHandler;
