@@ -32,7 +32,7 @@ import com.google.android.things.contrib.driver.apa102.Apa102;
 import com.google.android.things.contrib.driver.ht16k33.AlphanumericDisplay;
 import com.google.android.things.contrib.driver.pwmspeaker.Speaker;
 import com.google.android.things.pio.Gpio;
-import com.google.android.things.pio.PeripheralManager;
+import com.google.android.things.pio.PeripheralManagerService;
 
 import java.io.IOException;
 
@@ -45,8 +45,9 @@ public class DisplayActivity extends Activity {
     private Apa102 mLedstrip;
     private int ledPosition;
     private static final int LEDSTRIP_BRIGHTNESS = 1;
-    private String displayMessage = "HomeAway Android Traveler";
+    private String displayMessage = "HomeAway Traveler Android";
     private int messageStartingPoint;
+    private boolean up = true;
 
     Handler mainHandler;
 
@@ -106,8 +107,8 @@ public class DisplayActivity extends Activity {
 
         // GPIO led
         try {
-            PeripheralManager manager = PeripheralManager.getInstance();
-            mLed = manager.openGpio(BoardDefaults.getLedGpioPin());
+            PeripheralManagerService pioService = new PeripheralManagerService();
+            mLed = pioService.openGpio(BoardDefaults.getLedGpioPin());
             mLed.setEdgeTriggerType(Gpio.EDGE_NONE);
             mLed.setDirection(Gpio.DIRECTION_OUT_INITIALLY_LOW);
             mLed.setActiveType(Gpio.ACTIVE_HIGH);
@@ -212,10 +213,18 @@ public class DisplayActivity extends Activity {
         if (mLedstrip == null) {
             return;
         }
-        ledPosition = (ledPosition - 1);
-        if (ledPosition < 0) {
-            ledPosition = mRainbow.length - 1;
+        if (up) {
+            ledPosition = (ledPosition + 1);
+            if (ledPosition >= mRainbow.length - 1) {
+                up = !up;
+            }
+        } else {
+            ledPosition = (ledPosition - 1);
+            if (ledPosition <= 0) {
+                up = !up;
+            }
         }
+
         int[] colors = new int[mRainbow.length];
         colors[ledPosition] = mRainbow[ledPosition];
         try {
