@@ -45,7 +45,7 @@ public class DisplayActivity extends Activity {
     private Apa102 mLedstrip;
     private int ledPosition;
     private static final int LEDSTRIP_BRIGHTNESS = 1;
-    private String displayMessage = "HomeAway Traveler Android";
+    private String displayMessage = "HomeAway Traveler Android ";
     private int messageStartingPoint;
     private boolean up = true;
 
@@ -61,7 +61,7 @@ public class DisplayActivity extends Activity {
     private Runnable updateDisplayThread = new Runnable() {
         public void run() {
             updateDisplay();
-            mainHandler.postDelayed(this, 777);
+            mainHandler.postDelayed(this, 333);
         }
     };
 
@@ -200,8 +200,13 @@ public class DisplayActivity extends Activity {
     private void updateDisplay() {
         if (mDisplay != null) {
             try {
-                messageStartingPoint = (messageStartingPoint + 1) % displayMessage.length();
-                mDisplay.display(displayMessage.substring(messageStartingPoint));
+                messageStartingPoint = messageStartingPoint + 1;
+                if (messageStartingPoint == displayMessage.length()) {
+                    messageStartingPoint = 0;
+                }
+                if (messageStartingPoint <= displayMessage.length() - 1) {
+                    mDisplay.display(displayMessage.substring(messageStartingPoint) + displayMessage);
+                }
             } catch (IOException e) {
                 Log.e(TAG, "Error setting display", e);
             }
