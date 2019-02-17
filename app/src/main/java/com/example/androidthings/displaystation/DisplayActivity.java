@@ -200,10 +200,10 @@ public class DisplayActivity extends Activity {
     private void updateDisplay() {
         if (mDisplay != null) {
             try {
-                messageStartingPoint = messageStartingPoint + 1;
-                if (messageStartingPoint == displayMessage.length()) {
-                    messageStartingPoint = 0;
-                }
+                messageStartingPoint = (messageStartingPoint + 1) % displayMessage.length();
+
+                Log.d("darran", "message starting ptoin is:" + messageStartingPoint);
+
                 if (messageStartingPoint <= displayMessage.length() - 1) {
                     mDisplay.display(displayMessage.substring(messageStartingPoint) + displayMessage);
                 }
